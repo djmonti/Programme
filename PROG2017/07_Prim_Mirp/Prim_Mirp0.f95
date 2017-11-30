@@ -45,21 +45,28 @@ END MODULE
 
 PROGRAM Prim_Mirp
   USE module
-  INTEGER :: l, r, n
+  INTEGER :: l, r, n, k,x,y, start, start1
 
-  DO
-    WRITE(*,*) 'Geben Sie ein Intervall ein.'
-    READ(*,*) l, r
-    IF ((r-l > 0) .AND. (l > 0)) EXIT
-  END DO
+  DO k = 2,9
+    start = 10**k
+    start1 = start
+    x = 0
+    y = 0
 
-  DO n = l, r
-    IF (prim(n)) THEN
-      IF (prim(umkehr(n))) THEN
-        WRITE(*,*) n,'ist Mirpzahl'
-      ELSE
-        WRITE(*,*) n,'ist Primzahl'
+    DO WHILE (x /= 1)
+      IF ((prim(start)) .AND. (prim(umkehr(start)))) THEN
+        WRITE(*,*) start,'ist Mirpzahl'
+        x = 1
       END IF
-    END IF
+      start = start + 1
+    END DO
+
+    DO WHILE (y /= 1)
+      IF ((prim(start1)) .AND. (.NOT.(prim(umkehr(start1))))) THEN
+        WRITE(*,*) start1, 'ist Primzahl'
+        y = 1
+      END IF
+      start1 = start1 + 1
+    END DO
   END DO
 END PROGRAM

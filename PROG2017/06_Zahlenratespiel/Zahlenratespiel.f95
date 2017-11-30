@@ -15,7 +15,7 @@ PROGRAM Zahlenratespiel
     END DO
 
     !! Maximale Anzahl der Versuche
-    maxi = INT((log(r - l) + 1)/log(2.0))
+    maxi = INT((log(REAL(r) - l) + 1)/log(2.0))
 
     DO
       i = i + 1
@@ -26,11 +26,11 @@ PROGRAM Zahlenratespiel
       END IF
 
       !! Ausgabe einer Zahl aus Intervall
-      IF ((r - l == 0) .AND. (a == '>')) THEN !! Bedingung für n = obere Grenze
-        n = r
-      ELSE
+    !  IF ((r - l == 0) .AND. (a == '>')) THEN !! Bedingung für n = obere Grenze
+    !    n = r
+    !  ELSE
         n = ((r - l)) / 2 + l  !! n ist Mitte des Intervalls
-      END IF
+    !  END IF
 
       WRITE(*,*) 'Ist die Zahl', n, '?'
 
