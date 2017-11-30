@@ -5,7 +5,8 @@ MODULE fibo
 CONTAINS
   FUNCTION fibo_iterativ(x)
     INTEGER, PARAMETER  :: dble = SELECTED_INT_KIND(18)
-    INTEGER (KIND=dble) :: x, fibo_iterativ, j, x_1, x_2
+    INTEGER (KIND=dble) :: x, fibo_iterativ, x_1, x_2
+    INTEGER             :: j
       x_1           = 0
       x_2           = 1
       fibo_iterativ = 0
@@ -20,17 +21,17 @@ CONTAINS
       END DO
   END FUNCTION
 
-  RECURSIVE FUNCTION fibo_rekursiv(y,a,b) RESULT(z)
+  RECURSIVE FUNCTION fibo_rekursiv(x,a,b) RESULT(res)
     INTEGER, PARAMETER  :: dble = SELECTED_INT_KIND(18)
-    INTEGER (KIND=dble) :: y, a, b, z
-    IF (y == 0) THEN
-      z = 0
-    ELSE IF (y == 1) THEN
-      z = a
-    ELSE IF (y == 2) THEN
-      z = b
+    INTEGER (KIND=dble) :: x, a, b, res
+    IF (x == 0) THEN
+      res = 0
+    ELSE IF (x == 1) THEN
+      res = a
+    ELSE IF (x == 2) THEN
+      res = b
     ELSE
-      z = fibo_rekursiv(y - 1, b, a + b)
+      res = fibo_rekursiv(x - 1, b, a + b)
     END IF
 
   END FUNCTION
