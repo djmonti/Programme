@@ -11,6 +11,7 @@ PROGRAM Umkehrzahl
       z = z / 10
       IF (z >= 1) THEN
         j = j + 1
+        
       ELSE
         EXIT
       END IF
