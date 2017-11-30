@@ -1,4 +1,5 @@
 MODULE fibo
+  IMPLICIT NONE
   PUBLIC ::  fibo_iterativ, fibo_rekursiv
 
 CONTAINS
@@ -21,10 +22,16 @@ CONTAINS
 
   RECURSIVE FUNCTION fibo_rekursiv(y,a,b) RESULT(z)
     INTEGER, PARAMETER  :: dble = SELECTED_INT_KIND(18)
-    INTEGER (KIND=dble) :: fiborekursiv, y, a, b, z
-    IF (y == 1) z = a
-    IF (y == 2) z = b
-    z = fibo_rekursiv(y - 1, b, a + b)
+    INTEGER (KIND=dble) :: y, a, b, z
+    IF (y == 0) THEN
+      z = 0
+    ELSE IF (y == 1) THEN
+      z = a
+    ELSE IF (y == 2) THEN
+      z = b
+    ELSE
+      z = fibo_rekursiv(y - 1, b, a + b)
+    END IF
 
   END FUNCTION
 
@@ -32,6 +39,7 @@ END MODULE
 
 PROGRAM Fibonacci
   USE fibo
+  IMPLICIT NONE
   INTEGER, PARAMETER  :: dble = SELECTED_INT_KIND(18)
   INTEGER (KIND=dble) :: i
 
